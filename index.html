@@ -1,0 +1,588 @@
+<!--
+    -Add .notation to tag names in @media for specifity
+    -Focused on using good specifity.
+    -Clean code and less bloat.
+    -Combined Classes to reduce rules.
+    -Responsive with media queries.
+    -Used em and rem calculation.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Huddle landing page with curved sections</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    /* Global */
+    :root {
+      /* Primary */
+      --Pink: hsl(322, 100%, 66%);
+      --Light-Pink: hsl(321, 100%, 78%);
+      --Light-Red: hsl(0, 100%, 63%);
+      /* Neutral */
+      --Very-Dark-Cyan: hsl(191.7, 100%, 9%);
+      --Very-Pale-Blue: hsl(207, 100%, 98%);
+    }
+
+    html {
+      box-sizing: border-box;
+      max-width: 1920px;
+      font-size: 100%;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+      scroll-behavior: smooth;
+    }
+
+    body {
+
+      width: 100%;
+      min-width: 350px;
+      font-family: 'Open Sans', sans-serif;
+      padding: 0;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      h3 {
+        font-size: 2rem;
+      }
+      .calltoaction > p,
+      .growtogether__text > p,
+      .flowing__text > p,
+      .yourusers__section__text > p {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* as */
+    a.btn_calltoaction,
+    a.btn_calltoaction2 {
+      border: none;
+      background-color: var(--Pink);
+      color: white;
+      padding: 10px 33px;
+      font-weight: 600;
+      margin: 50px auto;
+      box-shadow: 0px 9px 12px 5px hsla(212, 48%, 76%, 0.308);
+      transition: all 1s ease-in-out;
+    }
+    a.btn_calltoaction:hover,
+    a.btn_calltoaction2:hover {
+      opacity: 0.5;
+      transition: all 1s ease-in-out;
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      a.btn_calltoaction,
+      a.btn_calltoaction2 {
+        padding: 26.5px 107px;
+        font-size: 1.2rem;
+      }
+    }
+
+    a {
+      border-radius: 50px;
+      text-decoration: none;
+    }
+
+    p {
+      min-width: 320px;
+      max-width: 520px;
+      font-size: 1em;
+      padding: 0;
+    }
+
+    /* Illustration Images  */
+    .illustrations {
+      width: 100%;
+      min-width: 280px;
+      max-width: 520px;
+      padding: 0 50px;
+      margin-top: 50px;
+      margin-bottom: 80px;
+    }
+
+    /* Curve Image Classes  */
+    .numbers-bottom-curve,
+    .calltoaction2-curves,
+    .flowing-curves {
+      background-repeat: no-repeat;
+      background-size: contain;
+      z-index: -1;
+    }
+
+    .numbers-bottom-curve {
+      background-image: url(images/bg-section-top-mobile-1.svg);
+      background-position: bottom center;
+    }
+
+    .flowing-curves {
+      background-image:
+        url(images/bg-section-bottom-mobile-1.svg),
+        url(images/bg-section-top-mobile-2.svg);
+      background-position: top center, bottom center;
+    }
+
+    .calltoaction2-curves {
+      background-image: url(images/bg-section-bottom-mobile-2.svg),
+        url(images/bg-footer-top-mobile.svg);
+      background-position: top center, bottom center;
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      section.numbers-bottom-curve {
+        background-image: url(images/bg-section-top-desktop-1.svg);
+      }
+
+      section.flowing-curves {
+        background-image: url(images/bg-section-bottom-desktop-1.svg),
+          url(images/bg-section-top-desktop-2.svg);
+      }
+
+      section.calltoaction2-curves {
+
+        background-image: url(images/bg-section-bottom-desktop-2.svg),
+          url(images/bg-footer-top-desktop.svg);
+      }
+    }
+
+    /* Global Styles End */
+    /* Header */
+    header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      max-width: 1920px;
+      margin: 0 auto;
+      min-width: 375px;
+      padding: 5%;
+    }
+
+    @media screen and (min-width: 700px) {
+      img.logo {
+        max-width: 240px;
+      }
+      a.btn-header {
+        padding: 8px 30px;
+        font-size: 1.2em;
+        transition: all 1s ease;
+      }
+    }
+
+    .logo {
+      max-width: 96px;
+    }
+    .btn-header {
+      border: 1px solid var(--Pink);
+      color: var(--Pink);
+      background-color: white;
+      padding: 3px 17px;
+      font-size: .7rem;
+      transition: all 1s ease-in-out;
+      box-shadow: 0px 4px 8px 3px hsla(212, 48%, 76%, 0.308);
+    }
+    a.btn-header:hover {
+      opacity: 0.2;
+    }
+    /* Call to Action */
+    @media only screen and (min-width: 62.5em) {
+      .calltoaction h1 {
+        font-size: 2.7rem;
+      }
+    }
+
+    #img_screenmockups {
+      min-width: 296px;
+      width: 100%;
+      max-width: 1016px;
+      margin-top: 100px;
+    }
+
+    /* Call to Action End */
+    /* Numbers */
+    .numbers {
+      height: 60vh;
+      transition: all 1s ease;
+    }
+
+    @media only screen and (min-width: 43.75em) {
+      .numbers {
+        display: flex;
+        flex-direction: row;
+        height: 75vh;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s ease;
+        column-gap: 120px;
+      }
+      .numbers h1 {
+        font-size: 10rem;
+      }
+      div.numbers__messages {
+        background-size: 25%;
+        background-position: left 20%;
+      }
+      div.numbers__communities {
+        background-size: 25%;
+        background-position: left 20%;
+      }
+      .numbers__messages > p,
+      .numbers__communities > p  {
+        font-size: 1.1rem;
+      }
+    }
+
+    .numbers__communities {
+      background-image: url(images/icon-communities.svg);
+      background-repeat: no-repeat;
+      background-position: top 10% left 30%;
+      background-size: 10%;
+    }
+
+    .numbers__messages {
+      background-image: url(images/icon-messages.svg);
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-size: 10%;
+      background-position: top 10% left 30%;
+    }
+
+    .numbers h1 {
+      font-size: 3.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .numbers p {
+      margin: 0 auto;
+    }
+
+
+    /* Grow Together Section */
+    .growtogether {
+      background-color: var(--Very-Pale-Blue);
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      .growtogether {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 120px;
+      }
+
+      .growtogether__text {
+        text-align: left;
+        order: 1;
+      }
+
+      .growtogether__text h3 {
+        font-size: 2rem;
+      }
+
+      .growtogether img {
+        order: 2;
+      }
+    }
+
+    /* Grow Together Section End */
+    /* Flowing Conversations Section */
+    .flowing {
+      height: 80vh;
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      .flowing {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 120px;
+        height: 100vh;
+      }
+
+      .flowing__text {
+        text-align: left;
+      }
+    }
+
+    /* Flowing Together Section End */
+    .yourusers__section {
+      background-color: var(--Very-Pale-Blue);
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      .yourusers__section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 120px;
+      }
+
+      .yourusers__section__text {
+        order: 1;
+        text-align: left;
+      }
+
+      .yourusers__section img {
+        order: 2;
+      }
+    }
+
+    /* Your Users Section End */
+    /* Call to Action 2 Section */
+    .calltoaction2 {
+      height: 70vh;
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      .calltoaction2 {
+        height: 100vh;
+      }
+    }
+
+    /* Call to Action 2 Section End */
+    /* Footer */
+    footer {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      height: 95vh;
+      justify-content: space-around;
+      background-color: var(--Very-Dark-Cyan);
+      color: #fff;
+      line-height: 1.7;
+    }
+
+    @media only screen and (min-width: 62.5em) {
+      footer {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: baseline;
+        height: 65vh;
+        padding-top: 5%;
+      }
+      footer p {
+        max-width: 350px;
+      }
+
+      .footer__newsletter {
+        order: 2;
+      }
+      .footer__contacts {
+        order: 1;
+      }
+    }
+
+    .footer__newsletter h2 {
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .footer__newsletter p {
+      margin-bottom: 50px;
+    }
+
+    form.footer__emailinput {
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+      align-items: flex-start;
+      max-width: 640px;
+    }
+    @media only screen and (min-width: 31.4em){
+      form.footer__emailinput {
+        flex-direction: row;
+        column-gap: 20px;
+        align-items: center;
+      }
+    }
+    .footer__emailinput input {
+      height: 48px;
+      max-width: 450px;
+      border-radius: 7px;
+      border: none;
+      width: 100%;
+      margin: 0;
+      min-width: 320px;
+      padding: 10px;
+      font-size: 1.2rem;
+    }
+
+    button.btn__footer {
+      border-radius: 5px;
+      margin: 0 0 0 auto;
+      border: none;
+      padding: 14px 44px;
+      font-size: 1rem;
+      background-color: var(--Pink);
+      color: #fff;
+      max-width: 160px;
+      transition: all 1s ease-in-out;
+    }
+    button.btn__footer:hover {
+      opacity: 0.5;
+      transition: all 1s ease-in-out;
+    }
+    .footer__contacts input {
+      height: 32px;
+      width: 200px;
+      border: none;
+    }
+    .footer__contacts p {
+      margin-bottom: 2.625em;
+    }
+
+    .footer__contactdetails {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 17px;
+      margin-top: 22px;
+    }
+    .footer__contactdetails p {
+      margin: 0;
+    }
+
+    .social-icons {
+      display: flex;
+      column-gap: 1em;
+      margin-top: 80px;
+      align-items: center;
+      transition: all 1s ease-in-out;
+    }
+    .social-icons a:hover {
+      opacity: 0.5;
+      transition: all 1s ease-in-out;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img class="logo" alt="logo" src="images/logo.svg">
+    <a href="#" class="btn-header">Try it free</a>
+  </header>
+  <section class="calltoaction">
+    <h1>Build The Community Your Fans Will Love</h1>
+    <p>
+      Huddle re-imagines the way we build communities. You have a voice, but so does
+      your audience. Create connections with your users as you engage in genuine discussion.</p>
+
+    <a href="#" class="btn_calltoaction">Get Started For Free</a>
+    <img id="img_screenmockups" alt="screenmockups" src="images/screen-mockups.svg">
+  </section>
+  <section class="numbers numbers-bottom-curve">
+    <div class="numbers__communities">
+      <h1>1.4k+</h1>
+      <p>Communities Formed</p>
+    </div>
+    <div class="numbers__messages">
+      <h1>2.7m+</h1>
+      <p>Messages Sent</p>
+    </div>
+
+  </section>
+  <section class="growtogether">
+    <img class="illustrations" alt="illustration-grow-together" src="images/illustration-grow-together.svg" />
+    <div class="growtogether__text">
+      <h3>Grow Together</h3>
+      <p>Generate meaningful discussions with your audience and build a strong, loyal community.
+        Think of the insightful conversations you miss out on with a feedback form.</p>
+    </div>
+  </section>
+  <section class="flowing flowing-curves">
+    <img class="illustrations" alt="illustration-flowing-conversation" src="images/illustration-flowing-conversation.svg" />
+    <div class="flowing__text">
+      <h3>Flowing Conversations</h3>
+      <p>You wouldn't paginate a conversation in real life, so why do it online? Our threads have
+        just-in-time loading for a more natural flow.</p>
+    </div>
+  </section>
+  <section class="yourusers__section">
+    <img class="illustrations" alt="illustration-your-users" src="images/illustration-your-users.svg" />
+    <div class="yourusers__section__text">
+      <h3>Your Users</h3>
+      <p>It takes no time at all to integrate Huddle with your app's authentication solution. This means,
+        once signed in to your app, your users can start chatting immediately.</p>
+    </div>
+  </section>
+  <section class="calltoaction2 calltoaction2-curves">
+    <h3>Ready To Build Your Community?</h3>
+    <a href="#" class="btn_calltoaction2">Get Started For Free</a>
+  </section>
+
+  <footer>
+    <div class="footer__newsletter">
+      <h2>Newsletter</h2>
+      <p>To recieve tips on how to grow your community, sign up to our weekly newsletter. We’ll never
+        send you spam or pass on your email address</p>
+
+      <form action="email.com" class="footer__emailinput">
+        <input type="email" name="email" placeholder="janedoe@email.com" required></input>
+        <button type="Subscribe" name="email" class="btn__footer">Subscribe</button>
+      </form>
+
+    </div>
+    <div class="footer__contacts">
+      <input ></input>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nulla quam, hendrerit lacinia
+        vestibulum a, ultrices quis sem.</p>
+      <div class="footer__contactdetails">
+        <img alt="icon-phone" src="images/icon-phone.svg" />
+        <p>Phone: +1-543-123-4567</p>
+      </div>
+      <div class="footer__contactdetails">
+        <img alt="icon-email" src="images/icon-email.svg"/>
+        <p>example@huddle.com</p>
+      </div>
+      <div class="social-icons">
+        <a href="#"><img alt="facebook" src="images/icon-facebook.svg"/></a>
+        <a href="#"><img alt="instagram" src="images/icon-instagram.svg"/></a>
+        <a href="#"><img src="images/icon-twitter.svg"/></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
